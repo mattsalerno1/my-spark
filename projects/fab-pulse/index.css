@@ -1,0 +1,189 @@
+/* FAB Pulse — Ring pulse animation. Shareable: use .fab-pulse-page as wrapper or scope as needed. */
+
+.fab-pulse-page {
+  --fab-pulse-bg: #e9e9e9;
+  --fab-pulse-ink: #070707;
+  --fab-pulse-fab-top: #b7ade6;
+  --fab-pulse-fab-bottom: #6f63d2;
+  --fab-pulse-fab-rim: #c9c1f0;
+  --fab-pulse-icon: #ffffff;
+
+  box-sizing: border-box;
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--fab-pulse-bg);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.fab-pulse-page *,
+.fab-pulse-page *::before,
+.fab-pulse-page *::after {
+  box-sizing: border-box;
+}
+
+.fab-pulse-nav {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.fab-pulse-nav a {
+  color: var(--fab-pulse-ink);
+  font-size: 0.875rem;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+.fab-pulse-nav a:hover {
+  opacity: 1;
+}
+
+.fab-pulse-stage {
+  width: min(940px, 92vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(44px, 8vw, 120px);
+}
+
+.fab-pulse-label {
+  margin: 0;
+  color: var(--fab-pulse-ink);
+  font-size: clamp(42px, 8vw, 64px);
+  font-weight: 450;
+  letter-spacing: 0.01em;
+}
+
+.fab-pulse-orb {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.fab-pulse-ring-base {
+  position: absolute;
+  inset: 10px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 54%, rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, 0.9) 67%, rgba(255, 255, 255, 0.96) 74%, rgba(255, 255, 255, 0) 86%),
+    radial-gradient(circle at 50% 50%, rgba(171, 168, 255, 0.2) 0%, rgba(255, 255, 255, 0) 62%);
+  filter: blur(0.25px);
+  opacity: 0.95;
+}
+
+.fab-pulse-pulse {
+  position: absolute;
+  inset: 10px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.72);
+  animation: fab-pulse-grow 2100ms cubic-bezier(0.2, 0.62, 0.2, 1) infinite;
+  will-change: transform, opacity;
+}
+
+.fab-pulse-pulse::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 2px;
+  background:
+    linear-gradient(0deg, #0000000d 0%, #0000000d 100%),
+    linear-gradient(0deg, #f963531a 0%, #f963531a 100%),
+    radial-gradient(ellipse farthest-corner at 28.54% 210%, #f96353ff 0%, #737dfeff 85%),
+    #5a63e2ff;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: fab-pulse-thicken 2100ms cubic-bezier(0.2, 0.62, 0.2, 1) infinite;
+}
+
+.fab-pulse-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(117, 110, 232, 0.28) 0%, rgba(117, 110, 232, 0) 70%);
+  filter: blur(1px);
+  opacity: 0;
+  animation: fab-pulse-glow 2100ms cubic-bezier(0.2, 0.62, 0.2, 1) infinite;
+}
+
+.fab-pulse-p1,
+.fab-pulse-p1::before,
+.fab-pulse-p1::after {
+  animation-delay: 0ms;
+}
+
+.fab-pulse-p2,
+.fab-pulse-p2::before,
+.fab-pulse-p2::after {
+  animation-delay: 1050ms;
+}
+
+@keyframes fab-pulse-grow {
+  0% { transform: scale(0.72); opacity: 0; }
+  12% { opacity: 0.8; }
+  70% { transform: scale(1.12); opacity: 0.22; }
+  100% { transform: scale(1.24); opacity: 0; }
+}
+
+@keyframes fab-pulse-thicken {
+  0% { padding: 2px; }
+  70% { padding: 10px; }
+  100% { padding: 14px; }
+}
+
+@keyframes fab-pulse-glow {
+  0% { transform: scale(0.76); opacity: 0; }
+  25% { opacity: 0.38; }
+  72% { transform: scale(1.18); opacity: 0.13; }
+  100% { transform: scale(1.24); opacity: 0; }
+}
+
+.fab-pulse-fab {
+  position: relative;
+  width: 94px;
+  height: 94px;
+  border-radius: 33px;
+  background: linear-gradient(180deg, var(--fab-pulse-fab-top) 0%, var(--fab-pulse-fab-bottom) 100%);
+  border: 1px solid rgba(201, 193, 240, 0.9);
+  box-shadow:
+    0 10px 22px rgba(86, 76, 189, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.34);
+  display: grid;
+  place-items: center;
+  z-index: 2;
+}
+
+.fab-pulse-icon {
+  width: 46px;
+  height: 30px;
+  border: 2px solid var(--fab-pulse-icon);
+  border-right-width: 8px;
+  clip-path: polygon(0% 0%, 82% 0%, 100% 50%, 82% 100%, 0% 100%);
+  position: relative;
+  opacity: 0.98;
+}
+
+.fab-pulse-icon::after {
+  content: "";
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  top: 50%;
+  left: 41%;
+  transform: translate(-50%, -50%);
+  background: var(--fab-pulse-icon);
+  clip-path: polygon(
+    50% 0%, 60% 35%, 100% 50%,
+    60% 65%, 50% 100%, 40% 65%,
+    0% 50%, 40% 35%
+  );
+}
