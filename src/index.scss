@@ -141,7 +141,7 @@ body {
   transform: translateY(-1px);
 }
 
-/* HomePage h1 with destructive background */
+/* HomePage h1 background */
 .home-page-bg h1.mb-2 {
-  background-color: var(--destructive);
+  background-color: var(--card-foreground);
 }
