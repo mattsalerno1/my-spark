@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Klaviyo-style dark theme */
+:root {
+  --klaviyo-burnt-sienna: #ef6351;
+  --klaviyo-green-spring: #1db954;
+  --klaviyo-shark: #1a1d21;
+  --klaviyo-bg: #0c0c0c;
+  --klaviyo-bg-elevated: #141414;
+}
+
+.home-page-bg,
+.home-page-bg-subtle {
+  background: #0c0c0c;
+  background-image: linear-gradient(to bottom, #0c0c0c 0%, #121212 100%);
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+.home-page-bg {
+  position: relative;
+}
+
+/* Very subtle ambient glow at top */
+.home-page-bg::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 70% 40% at 50% -5%,
+    rgba(239, 99, 81, 0.04) 0%,
+    transparent 55%
+  );
+  z-index: 0;
+}
+
+/* Subtle glow at bottom of page */
+.home-page-bg::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% 105%,
+    rgba(239, 99, 81, 0.05) 0%,
+    transparent 50%
+  );
+  z-index: 0;
+}
+
+.home-page-bg > * {
+  position: relative;
+  z-index: 1;
+}
+
+.home-page-bg a {
+  color: inherit;
+}
+
+/* Main title: gradient text + glow (glow via wrapper drop-shadow) */
+.home-title-wrap {
+  display: inline-block;
+  filter: drop-shadow(0 0 24px rgba(239, 99, 81, 0.28)) drop-shadow(0 0 48px rgba(239, 99, 81, 0.12));
+}
+.home-title-gradient {
+  background: linear-gradient(
+    135deg,
+    #f5f0ee 0%,
+    #f0e6e3 35%,
+    rgba(239, 99, 81, 0.92) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* 404 and other titles: solid text + glow */
+.home-title-glow {
+  text-shadow:
+    0 0 24px rgba(239, 99, 81, 0.25),
+    0 0 48px rgba(239, 99, 81, 0.12);
+}
+
+/* Transitions: shared timing */
+.home-transition {
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
+
+/* Subtle card glow + hover lift */
+.home-card-glow {
+  transition:
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.25s ease;
+}
+.home-card-glow:hover {
+  box-shadow: 0 0 24px rgba(239, 99, 81, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Input/select: smooth border and glow */
+.home-input-glow,
+.home-select {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+.home-input-glow:focus {
+  box-shadow: 0 0 0 1px var(--klaviyo-burnt-sienna), 0 0 16px rgba(239, 99, 81, 0.08);
+}
+
+/* View toggle: sliding pill + icons */
+.home-view-toggle-wrap {
+  min-width: 7rem;
+}
+.home-view-toggle-pill {
+  transition: margin-left 0.22s ease-out;
+}
+.home-view-toggle-wrap button[data-active] {
+  color: white;
+}
+
+/* 404 back link */
+.home-back-link {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.home-back-link:hover {
+  transform: translateY(-1px);
+}

@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/registry.tsx","./src/vite-env.d.ts","./projects/todo/index.tsx","./projects/todo/components/button.tsx","./projects/todo/components/card.tsx","./projects/todo/components/checkbox.tsx","./projects/todo/components/input.tsx","./projects/todo/lib/utils.ts"],"version":"5.6.3"}
