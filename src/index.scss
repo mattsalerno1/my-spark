@@ -16,6 +16,7 @@ body {
   --klaviyo-shark: #1a1d21;
   --klaviyo-bg: #0c0c0c;
   --klaviyo-bg-elevated: #141414;
+  --destructive: oklch(0.704 0.191 22.216);
 }
 
 .home-page-bg,
@@ -138,4 +139,9 @@ body {
 }
 .home-back-link:hover {
   transform: translateY(-1px);
+}
+
+/* HomePage h1 with destructive background */
+.home-page-bg h1.mb-2 {
+  background-color: var(--destructive);
 }
